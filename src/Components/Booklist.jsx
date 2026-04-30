@@ -1,11 +1,14 @@
-import { Container, Row, Col, Form } from "react-bootstrap";
-import Component from "react";
-import Singlebook from "./Singlebook";
+import { Col, Container, Form, Row } from "react-bootstrap";
+import SingleBook from "./SingleBook";
+import { Component } from "react";
 
 class BookList extends Component {
-  state = { search: "" };
+  state = {
+    search: "",
+  };
 
   render() {
+    // fa il map di uno dei JSON
     return (
       <Container>
         <Row className="justify-content-center my-5">
@@ -22,7 +25,6 @@ class BookList extends Component {
             />
           </Col>
         </Row>
-
         <Row className="row-cols-1 row-cols-md-2 row-cols-lg-4">
           {this.props.libri
             .filter((libro) => {
@@ -39,7 +41,7 @@ class BookList extends Component {
             .map((libro) => {
               return (
                 <Col key={libro.asin}>
-                  <Singlebook
+                  <SingleBook
                     image={libro.img}
                     title={libro.title}
                     price={libro.price}
