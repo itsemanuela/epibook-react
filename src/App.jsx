@@ -4,7 +4,13 @@ import Footer1 from "./Components/Footer";
 import WelcomeAlert from "./Components/WelcomeAlert";
 import Arraydilibri from "./Components/Arraydilibri";
 import BookList from "./Components/Booklist";
-import libri from "../horror.json";
+import libri from "./Components/data/horror.json";
+import scifiBooks from "./data/scifi.json";
+import romanceBooks from "./data/romance.json";
+import fantasyBooks from "./data/fantasy.json";
+import horrorBooks from "./data/horror.json";
+import historyBooks from "./data/history.json";
+import SingleBook from "./components/SingleBook";
 
 function App() {
   return (

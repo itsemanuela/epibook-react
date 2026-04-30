@@ -1,5 +1,5 @@
 import { Container, Card, Col, Row, Button } from "react-bootstrap";
-import libri from "../../horror.json";
+import libri from "../Components/data/horror.json";
 
 const Arraydilibri = () => {
   return (
