@@ -1,36 +1,42 @@
-import "./App.css";
-import Navbar1 from "./Components/Navbar";
-import Footer1 from "./Components/Footer";
-import WelcomeAlert from "./Components/WelcomeAlert";
-import Arraydilibri from "./Components/Arraydilibri";
+import "bootstrap/dist/css/bootstrap.min.css";
+// import BookList from './components/BookList'
+import scifiBooks from "./Components/data/scifi.json";
+import romanceBooks from "./Components/data/romance.json";
+import fantasyBooks from "./Components/data/fantasy.json";
+import horrorBooks from "./Components/data/horror.json";
+import historyBooks from "./Components/data/history.json";
+import SingleBook from "./Components/Singlebook";
 import BookList from "./Components/Booklist";
-import libri from "./Components/data/horror.json";
-import scifiBooks from "./data/scifi.json";
-import romanceBooks from "./data/romance.json";
-import fantasyBooks from "./data/fantasy.json";
-import horrorBooks from "./data/horror.json";
-import historyBooks from "./data/history.json";
-import SingleBook from "./components/SingleBook";
 
 function App() {
   return (
     <>
-      <div className="d-flex flex-column min-vh-100">
-        <header>
-          {" "}
-          <Navbar1 />
-        </header>
-        <WelcomeAlert />
-        <main className="flex-grow-1">
-          <Arraydilibri />
-          <div>
-            <BookList books={libri} />
-          </div>
-        </main>
-        <footer className="text-center">
-          <Footer1 />
-        </footer>
-      </div>
+      <BookList libri={historyBooks} />
+      <BookList libri={fantasyBooks} />
+      <BookList libri={horrorBooks} />
+      <BookList libri={scifiBooks} />
+      <BookList libri={romanceBooks} />
+      {
+        <BookList
+          libri={[
+            ...scifiBooks,
+            ...romanceBooks,
+            ...fantasyBooks,
+            ...horrorBooks,
+            ...historyBooks,
+          ]}
+        />
+      }
+
+      {
+        <SingleBook
+          title={scifiBooks[10].title}
+          image={scifiBooks[10].img}
+          price={scifiBooks[10].price}
+        />
+      }
+
+      <BookList libri={horrorBooks} />
     </>
   );
 }
