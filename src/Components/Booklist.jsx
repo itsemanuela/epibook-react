@@ -1,18 +1,56 @@
-import { Container, Row, Col } from "react-bootstrap";
-import SingleBook from "./SingleBook";
+import { Container, Row, Col, Form } from "react-bootstrap";
+import Component from "react";
+import Singlebook from "./Singlebook";
 
-const BookList = ({ books }) => {
-  return (
-    <Container className="mt-5">
-      <Row className="g-4">
-        {books.map((libro) => (
-          <Col xs={12} md={4} lg={3} key={libro.asin}>
-            <SingleBook libro={libro} />
+class BookList extends Component {
+  state = { search: "" };
+
+  render() {
+    return (
+      <Container>
+        <Row className="justify-content-center my-5">
+          <Col xs={12} md={6}>
+            <Form.Control
+              type="text"
+              placeholder="Cerca un libro"
+              value={this.state.search}
+              onChange={(e) => {
+                this.setState({
+                  search: e.target.value,
+                });
+              }}
+            />
           </Col>
-        ))}
-      </Row>
-    </Container>
-  );
-};
+        </Row>
+
+        <Row className="row-cols-1 row-cols-md-2 row-cols-lg-4">
+          {this.props.libri
+            .filter((libro) => {
+              if (
+                libro.title
+                  .toLowerCase()
+                  .includes(this.state.search.toLowerCase())
+              ) {
+                return true;
+              } else {
+                return false;
+              }
+            })
+            .map((libro) => {
+              return (
+                <Col key={libro.asin}>
+                  <Singlebook
+                    image={libro.img}
+                    title={libro.title}
+                    price={libro.price}
+                  />
+                </Col>
+              );
+            })}
+        </Row>
+      </Container>
+    );
+  }
+}
 
 export default BookList;

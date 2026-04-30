@@ -1,15 +1,31 @@
-import { Card } from "react-bootstrap";
+import { Component } from "react";
+import { Card, Button } from "react-bootstrap";
 
-const SingleBook = ({ book }) => {
-  return (
-    <Card>
-      <Card.Img src={book.img} />
-      <Card.Title>{book.title}</Card.Title>
-      <Card.Text>{book.price}€</Card.Text>
-      <Card.Text>{book.asin}</Card.Text>
-      <Card.Text>{book.category}</Card.Text>
-    </Card>
-  );
-};
+class Singlebook extends Component {
+  state = {
+    selected: false,
+  };
 
-export default SingleBook;
+  render() {
+    return (
+      <Card className={this.state.selected ? "shadow-lg" : ""}>
+        <Card.Img
+          variant="top"
+          src={this.props.image}
+          onClick={() => {
+            this.setState({
+              selected: !this.state.selected,
+            });
+          }}
+        />
+        <Card.Body>
+          <Card.Title>{this.props.title}</Card.Title>
+          <Card.Text>{this.props.price}</Card.Text>
+          <Button variant="primary">Comprami!</Button>
+        </Card.Body>
+      </Card>
+    );
+  }
+}
+
+export default Singlebook;
